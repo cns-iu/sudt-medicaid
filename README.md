@@ -4,7 +4,7 @@ This repository provides code and data processing for the paper "Job postings in
 
 For performing initial data exploration and burst analysis you will need python code from the Code directory.
 
-For perfoming causal anlaysis you will need STATA code from the Code directory
+For perfoming causal analysis you will need STATA code from the Code directory
 
 Contact Olga B. Scrivner <obscrivn@indiana.edu> or Thuy Nguyen <thdnguye@indiana.edu> if there are questions or concerns.
 

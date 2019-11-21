@@ -252,33 +252,6 @@ coefplot (SUDL1 )  (OutpatientL1 )  (ResidentialL1 )  (HospitalL1 )  (Psychologi
 	graph export "${plotdir}/figure_4_BG_Medicaid_SUDT.tif" ,  replace	 width(2000)
 	graph export "${plotdir}/figure_4_BG_Medicaid_SUDT.png" ,  replace	 width(4000)	
 	    
-	
-	
-coefplot (SUDN1 ) (OutpatientN1 )  (ResidentialN1 )  (HospitalN1 )  (PsychologistN1 ) ///
-	(SocialWorkerN1) ///
-	(CounselorN1) ///
-	(TherapistN1) ///
-	(EntryLevelPractitionerN1) ///
-	(MidLevelPractitionerN1) ///	
-	(Exclude10JobsN1) ///
-	,  keep(expansion_post  ) aseq swapnames  ///	
-	coeflabels(SUDN1="All Professionals" ///
-	OutpatientN1="Outpatient SUDT" ///
-	ResidentialN1="Residential SUDT" ///	
-	HospitalN1="Hospital SUDT" ///
-	SocialWorkerN1="Social Workers" ///
-	PsychologistN1="Psychologists" ///
-	CounselorN1="Counselors" ///
-	TherapistN1="Therapists" ///
-	EntryLevelPractitionerN1="Entry-Level Practitioners" ///
-	MidLevelPractitionerN1="Mid-Level Practitioners"  /// 
-	Exclude10JobsN1="Other Professionals" ) /// 
-	xline(0) xlabel(,angle(0) labsize(small) nogrid ) nooffset level(90 95) legend(off) ///
-	ytitle(SUDT Occupation)  xtitle("A. Total job postings",  color(black) )  ///
-	 citop msymbol(square) ciopts(recast(rcap  lowerlimit upperlimit barposition ) lcolor(black black) ) ///
-	 graphregion(color(white)) color(black ) saving("${intdir}/DD_NB_TotalCOUNT", replace)  
-
-	
 
 	// robustness check
 	// (1) exclude ME 
@@ -305,7 +278,7 @@ coefplot (SUDN1 ) (OutpatientN1 )  (ResidentialN1 )  (HospitalN1 )  (Psychologis
 	gen include=e(sample)==1
 		
 		
- foreach var in SUD Outpatient Residential Hospital {								
+ foreach var in SUD  {								
 reghdfe l`var'Pop expansion_post ue lmedian_income prescribingrate ageadjustedrate   ///
 	if include==1 , absorb(st_fips year ) vce(cluster st_fips)
         eststo `var'L1
